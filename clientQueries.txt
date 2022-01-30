@@ -29,10 +29,52 @@ query getUserById{
   }
 }
 
+********************************
+dynamic way
+query getUserById($userId:ID!){
+  user(id:$userId){
+    lastName
+    firstName
+    id
+    email
+    quotes{
+      name
+    }
+  }
+}
+
+********************************
+query getQuoteByUser($quoteId:ID!){
+  iquote(by:$quoteId){
+    name
+    by
+  }
+}
+
 *******************************
 query getQuoteByUser{
   iquote(by:4232){
     name
     by
+  }
+}
+
+*******************************
+mutation createNewuser($firstName:String!,$lastName:String!,$email:String!,$password:String!){
+  signupUserDummy(firstName:$firstName,lastName:$lastName,password:$password,email:$email){
+    firstName
+    lastName
+    id
+    email
+  }
+}
+
+****************************************************************
+mutation createNewuser($userNew:UserInput!){
+  user:signupUserDummy(userNew:$userNew){
+    firstName
+    lastName
+    id
+    email
   }
 }
