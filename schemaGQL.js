@@ -35,6 +35,7 @@ export const typeDefs = gql`
   type Quote {
     name: String!
     by: ID!
+    _id: ID!
   }
 
   type Token {
