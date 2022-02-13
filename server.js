@@ -7,7 +7,7 @@ import { typeDefs } from "./schemaGQL.js";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { resolvers } from "./resolvers.js";
-import jwt from "jsonwebtoken";
+import { context } from "./context.js";
 dotenv.config({
   path: "./config.env",
 });
@@ -29,13 +29,7 @@ mongoose.connection.on("error", (err) => {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => {
-    const { authorization } = req.headers;
-    if (authorization) {
-      const { userId } = jwt.verify(authorization, process.env.tokenKey);
-      return { userId };
-    }
-  },
+  context,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 

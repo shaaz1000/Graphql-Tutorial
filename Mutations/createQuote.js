@@ -11,6 +11,5 @@ export const createQuote = async (_, { name }, { userId }) => {
     by: userId,
   });
   const savedQuote = await quote.save();
-  console.log(savedQuote);
   return savedQuote;
 };
