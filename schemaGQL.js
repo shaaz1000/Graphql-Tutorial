@@ -23,7 +23,7 @@ export const typeDefs = gql`
   }
 
   type Quote {
-    name: String
+    name: String!
     by: ID
   }
 
@@ -34,6 +34,7 @@ export const typeDefs = gql`
   type Mutation {
     signupUser(userNew: UserInput!): User
     signinUser(userSignin: UserSigninInput!): Token
+    createQuote(name: String!): Quote
   }
 
   input UserSigninInput {

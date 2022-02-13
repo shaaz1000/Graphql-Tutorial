@@ -1,5 +1,6 @@
 import { users, quotes } from "./fakedb.js";
 import { signupUser, signinUser } from "./Mutations/signInUpUser.js";
+import { createQuote } from "./Mutations/createQuote.js";
 export const resolvers = {
   Query: {
     users: () => users,
@@ -13,5 +14,6 @@ export const resolvers = {
   Mutation: {
     signupUser,
     signinUser,
+    createQuote,
   },
 };
