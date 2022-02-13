@@ -1,5 +1,5 @@
 import { users, quotes } from "./fakedb.js";
-import { randomBytes } from "crypto";
+import { signupUser, signinUser } from "./Mutations/signInUpUser.js";
 export const resolvers = {
   Query: {
     users: () => users,
@@ -11,14 +11,7 @@ export const resolvers = {
     quotes: (ur) => quotes.filter((quote) => quote.by === ur.id),
   },
   Mutation: {
-    signupUserDummy: (_, { userNew }) => {
-      const id = randomBytes(5).toString("hex");
-      users.push({
-        id,
-        ...userNew,
-      });
-
-      return users.find((user) => user.id === id);
-    },
+    signupUser,
+    signinUser,
   },
 };

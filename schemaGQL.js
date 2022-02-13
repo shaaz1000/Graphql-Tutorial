@@ -2,22 +2,23 @@ import { gql } from "apollo-server";
 
 // creating a schema
 // schema could be blue print where we mention types
-// from client side we can query
+// from client s_ide we can query
 
 // query
 export const typeDefs = gql`
   type Query {
     users: [User]
-    user(id: ID!): User
+    user(_id: ID!): User
     quotes: [Quote]
     iquote(by: ID!): [Quote]
   }
 
   type User {
-    id: ID
+    _id: ID
     firstName: String
     lastName: String
     email: String
+    password: String
     quotes: [Quote]
   }
 
@@ -26,8 +27,18 @@ export const typeDefs = gql`
     by: ID
   }
 
+  type Token {
+    token: String
+  }
+
   type Mutation {
-    signupUserDummy(userNew: UserInput!): User
+    signupUser(userNew: UserInput!): User
+    signinUser(userSignin: UserSigninInput!): Token
+  }
+
+  input UserSigninInput {
+    email: String!
+    password: String!
   }
 
   input UserInput {
